@@ -127,7 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppendToFile.cpp" />
+    <ClCompile Include="FileOutput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OutputToCertainFile.cpp" />
+    <ClCompile Include="WriteToFile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppendToFile.hpp" />
+    <ClInclude Include="FileOutput.hpp" />
+    <ClInclude Include="Includes.hpp" />
+    <ClInclude Include="OutputToCertainFile.hpp" />
+    <ClInclude Include="WriteToFile.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

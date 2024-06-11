@@ -34,6 +34,7 @@ void FileOutput()
 		}
 		else
 		{
+			Total(namePath, amountPath, pricePath);
 			break;
 		}
 	}

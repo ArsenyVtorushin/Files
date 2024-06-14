@@ -8,22 +8,22 @@ void Total(std::string namePath, std::string amountPath, std::string pricePath)
 
 	int sizeName = 1, sizeAmount = 1, sizePrice = 1;
 
-	std::string* names = new std::string[sizeName];
-	std::string* amounts = new std::string[sizeAmount];
-	std::string* prices = new std::string[sizePrice];
+	std::string* names = new std::string[sizeName]{};
+	std::string* amounts = new std::string[sizeAmount]{};
+	std::string* prices = new std::string[sizePrice]{};
 
-	std::ofstream totalFile;
-	std::string totalPath = "total.txt";
-
-	AppendToTotalFile(nameFileFrom, namePath, totalFile, totalPath, names, sizeName);
-	AppendToTotalFile(amountFileFrom, amountPath, totalFile, totalPath, amounts, sizeAmount);
-	AppendToTotalFile(priceFileFrom, pricePath, totalFile, totalPath, prices, sizePrice);
+	AppendToArrays(nameFileFrom, namePath, names, sizeName);
+	AppendToArrays(amountFileFrom, amountPath, amounts, sizeAmount);
+	AppendToArrays(priceFileFrom, pricePath, prices, sizePrice);
 
 	PrintToConsole(names, amounts, prices);
 
+	delete[]names;
+	delete[]amounts;
+	delete[]prices;
 }
 
-void AppendToTotalFile(std::ifstream& file, std::string path, std::ofstream& totalFile, std::string totalPath, std::string arr[], int& size)
+void AppendToArrays(std::ifstream& file, std::string path, std::string arr[], int& size)
 {
 	file.open(path);
 
@@ -33,31 +33,16 @@ void AppendToTotalFile(std::ifstream& file, std::string path, std::ofstream& tot
 	}
 	else
 	{
-		totalFile.open(totalPath, std::ofstream::app);
+		std::string data;
+		int i = 0;
 
-		if (!totalFile.is_open())
+		while (!file.eof())
 		{
-			std::cerr << "\nError\n";
+			data = "";
+			arr[i] = data;
+			size++;
+			i++;
 		}
-		else
-		{
-			std::string data;
-			int i = 0;
-
-			while (!file.eof())
-			{
-				data = "";
-				file >> data;
-
-				totalFile << data << " ";
-				arr[i] = data;
-
-				i++;
-			}
-			totalFile << "\n";
-		}
-
-		totalFile.close();
 	}
 
 	file.close();

@@ -16,8 +16,4 @@ void PrintToConsole(std::string nameArr[], std::string amountArr[], std::string 
 			<< std::setw(11) << amountArr[i]
 			<< std::setw(5) << priceArr[i] << "\n";
 	}
-
-	delete[]nameArr;
-	delete[]amountArr;
-	delete[]priceArr;
 }

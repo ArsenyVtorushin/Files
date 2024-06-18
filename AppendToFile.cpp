@@ -3,7 +3,6 @@
 void AppendToFile(int& i, std::ofstream& file, std::string path, std::string data)
 {
 	char chooseNewLine;
-
 	do
 	{
 		std::cout << "\n1) Начать с новой строки\n2) Продолжить в текущей\n0) Назад\n";

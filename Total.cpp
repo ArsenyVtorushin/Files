@@ -6,7 +6,7 @@ void Total(std::string namePath, std::string amountPath, std::string pricePath)
 	std::ifstream amountFileFrom;
 	std::ifstream priceFileFrom;
 
-	int sizeName = 0, sizeAmount = 0, sizePrice = 0;
+	int sizeName = 1, sizeAmount = 1, sizePrice = 1;
 
 	std::string* names = new std::string[sizeName]{};
 	std::string* amounts = new std::string[sizeAmount]{};
@@ -23,7 +23,7 @@ void Total(std::string namePath, std::string amountPath, std::string pricePath)
 	delete[]prices;
 }
 
-void AppendToArrays(std::ifstream& file, std::string path, std::string mainArr[], int& size)
+void AppendToArrays(std::ifstream& file, std::string path, std::string arr[], int& size)
 {
 	file.open(path);
 
@@ -36,37 +36,46 @@ void AppendToArrays(std::ifstream& file, std::string path, std::string mainArr[]
 		std::string data;
 		int ind = 0;
 		std::string* tempArr = new std::string[size];
-		std::string* arr = new std::string[size];
 
 		while (!file.eof())
 		{
-			std::string* tempArr = new std::string[size];
-
-			for (int i = 0; i < size; i++)
+			if (ind == 0)
 			{
-				tempArr[i] = arr[i];
+				data = "";
+				file >> data;
+				arr[ind] = data;
 			}
-
-			delete[]arr;
-			size++;
-			std::string* arr = new std::string[size];
-
-			
-			for (int i = 0; i < size - 1; i++)
+			else
 			{
-				arr[i] = tempArr[i];
+				for (int i = 0; i < size; i++)
+				{
+					tempArr[i] = arr[i];
+				}
+
+				delete[]arr;
+				size++;
+				std::string* arr = new std::string[size];
+
+				for (int i = 0; i < size - 1; i++)
+				{
+					arr[i] = tempArr[i];
+				}
+
+				data = "";
+				file >> data;
+				arr[ind] = data;
+
+				delete[]tempArr;
+				std::string* tempArr = new std::string[size];
+
+				for (int i = 0; i < size; i++)
+				{
+					tempArr[i] = arr[i];
+				}
 			}
-			
-
-			data = "";
-			file >> data;
-			arr[ind] = data;
-
 			ind++;
-			delete[]tempArr;
 		}
-		delete[]arr;
+		delete[]tempArr;
 	}
-
 	file.close();
 }

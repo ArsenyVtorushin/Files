@@ -23,7 +23,7 @@ void Total(std::string namePath, std::string amountPath, std::string pricePath)
 	delete[]prices;
 }
 
-void AppendToArrays(std::ifstream& file, std::string path, std::string arr[], int& size)
+void AppendToArrays(std::ifstream& file, std::string path, std::string *&arr, int& size)
 {
 	file.open(path);
 
@@ -54,7 +54,7 @@ void AppendToArrays(std::ifstream& file, std::string path, std::string arr[], in
 
 				delete[]arr;
 				size++;
-				std::string* arr = new std::string[size];
+				arr = new std::string[size];
 
 				for (int i = 0; i < size - 1; i++)
 				{
@@ -66,7 +66,7 @@ void AppendToArrays(std::ifstream& file, std::string path, std::string arr[], in
 				arr[ind] = data;
 
 				delete[]tempArr;
-				std::string* tempArr = new std::string[size];
+				tempArr = new std::string[size];
 
 				for (int i = 0; i < size; i++)
 				{
